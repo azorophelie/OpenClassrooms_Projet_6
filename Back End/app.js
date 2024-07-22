@@ -28,8 +28,9 @@ app.use((req, res, next) => {
   });
 
   // Utilisation des routeurs pour les livres et utilisateurs 
+  app.use('/api/auth', userRoutes);
 app.use('/api/books', bookRoutes); 
-app.use('/api/auth', userRoutes);
+
 // Middleware pour servir les images statiques 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(bodyParser.json());

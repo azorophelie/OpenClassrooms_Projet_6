@@ -35,8 +35,8 @@ const optimizeImage = async (req, res, next) => {
     
     // Redimensionnement et conversion de l'image en WebP avec Sharp
     await sharp(filePath)
-      .resize({ width: 260 }) // Ajustez la largeur ou d'autres options selon vos besoins
-      .webp({ quality: 70 })
+      .resize({ width: 260 }) 
+      .webp({ quality: 100 })
       .toFile(outputFilePath);
     
     // Supprimer l'image originale non optimisée
