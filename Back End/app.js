@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+require("dotenv").config({ path: ".env.local" });
 const path = require('path');
 
 // Importation des routeurs pour les livres et utilisateurs
@@ -14,10 +15,7 @@ app.use(express.json());
 // Chaîne de connection a la base de MongoDB
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
 // Connexion a MongoDB
-mongoose.connect(dbConnectionString, {
-useNewUrlParser: true,
-useUnifiedTopology: true
-})
+mongoose.connect(dbConnectionString)
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch((err) => console.error('Connexion à MongoDB échouée :', err));
 
