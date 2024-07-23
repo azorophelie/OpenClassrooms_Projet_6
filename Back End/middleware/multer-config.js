@@ -20,16 +20,26 @@ const storage = multer.diskStorage({
   }
 });
 
+const upload = multer({ storage: storage });
+
 const optimizeImage = async (req, res, next) => {
   if (!req.file) return next();
   
   const { filename, path: filePath } = req.file;
+
   try {
     const outputFilePath = path.join('images', `${path.parse(filename).name}.webp`);
-    await sharp(filePath).resize({ width: 260 }).webp({ quality: 100 }).toFile(outputFilePath);
+    await sharp(filePath)
+      .resize({ width: 260 })
+      .webp({ quality: 100 })
+      .toFile(outputFilePath);
+
+    // Supprimer le fichier original après conversion
     fs.unlink(filePath, err => {
       if (err) console.error('Error removing original file:', err);
     });
+
+    // Mettre à jour le chemin et le nom du fichier dans la requête
     req.file.filename = path.basename(outputFilePath);
     req.file.path = outputFilePath;
     next();
@@ -37,8 +47,6 @@ const optimizeImage = async (req, res, next) => {
     next(error);
   }
 };
-
-const upload = multer({ storage: storage });
 
 module.exports = {
   upload,

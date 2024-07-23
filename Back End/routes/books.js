@@ -15,10 +15,10 @@ router.delete('/:id', auth, bookCtrl.deleteBook);
 router.get('/bestrating', bookCtrl.bestRatings);
 // Route pour obtenir un livre par son ID
 router.get('/:id', bookCtrl.getOneBook);
-router.post("/:id/rating", auth, bookCtrl.rateBook);
+
 // Route pour obtenir tous les livres
 router.get('/', bookCtrl.getAllBooks);
 // Route pour obtenir les livres avec les meilleures notes
-
+router.post("/:id/rating", auth, bookCtrl.rateBook);
 
 module.exports = router;

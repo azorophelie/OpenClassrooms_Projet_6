@@ -80,30 +80,40 @@ exports.deleteBook = (req, res, next) => {
 };
 
 exports.rateBook = (req, res, next) => {
-  const userId = req.auth.userId;
-  const { rating } = req.body;
-
-  if (rating < 1 || rating > 5) return res.status(400).json({ message: "La note doit être comprise entre 1 et 5." });
+  const userId = req.body.userId;
+  const grade = Number(req.body.rating);
+  const userRating = (userId, grade);
+  // Vérifie que la note est comprise entre 1 et 5
+  if (rating < 1 || rating > 5) {
+    return res.status(400).json({ message: "La note doit être comprise entre 1 et 5." });
+  }
 
   Book.findOne({ _id: req.params.id })
     .then(book => {
-      if (!book) return res.status(404).json({ message: "Livre non trouvé!" });
+      if (!book) {
+        return res.status(404).json({ message: "Livre non trouvé!" });
+      }
 
-      const existingRatingIndex = book.ratings.findIndex(r => r.userId.toString() === userId);
-      if (existingRatingIndex > -1) return res.status(400).json({ message: "L'utilisateur a déjà noté ce livre" });
+      // Vérifie que l'utilisateur n'a pas déjà noté ce livre
+      const existingRatingIndex = book.ratings.findIndex(rating => rating.userId.toString() === userId);
+      if (existingRatingIndex > -1) {
+        return res.status(400).json({ message: "L'utilisateur a déjà noté ce livre" });
+      }
 
-      book.ratings.push({ userId, grade: rating });
+      // Ajoute la nouvelle note au tableau des notes du livre
+      book.ratings.push({ userId, grade: userRating });
 
+      // Recalcul de la moyenne des notes
       const totalGrade = book.ratings.reduce((accumulator, currentValue) => accumulator + currentValue.grade, 0);
       book.averageRating = parseFloat((totalGrade / book.ratings.length).toFixed(1));
 
+      // Sauvegarde les modifications dans la base de données
       book.save()
-        .then(() => res.status(200).json({ message: 'Note mise à jour avec succès', averageRating: book.averageRating }))
+        .then(() => res.json(200).json(book))
         .catch(error => res.status(500).json({ error: 'Erreur lors de la sauvegarde de la note' }));
     })
     .catch(error => res.status(500).json({ error: 'Erreur lors de la recherche du livre' }));
 };
-
 exports.getAllBooks = (req, res, next) => {
   Book.find()
     .then(books => res.status(200).json(books))
