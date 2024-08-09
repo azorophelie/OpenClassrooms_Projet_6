@@ -47,6 +47,35 @@ Accédez au répertoire du backend et installez les dépendances :
 ```cd BackEnd```
 
 ```npm install```
+## 3. Configuration de la Base de Données
+MongoDB est utilisé dans ce projet pour stocker et gérer les données, telles que les informations sur les livres, les utilisateurs, et les avis. La connexion à la base de données est réalisée grâce à Mongoose, un outil permettant de manipuler facilement les données MongoDB à travers un schéma bien défini.
+#### Avant de lancer ce projet, assurez vous d'avoir bien configuré votre base de données sur MongoDB en suivant les étapes ci-dessous: 
+ Si vous n'avez pas encore de compte MongoDB, inscrivez-vous sur [MongoDB](https://account.mongodb.com/account/register).
+
+1. Après vous être connecté à MongoDB, créez un nouveau cluster. Cela hébergera vos bases de données.
+2.  Dans le cluster, créez une base de données en lui donnant un nom (par exemple `mydatabase`).
+   
+3.Récupérez l'URL de connexion au cluster MongoDB et configurez les variables d'environnement dans le fichier `.env` que vous créez à la racine du projet.
+   
+#### Variables d'environnement
+Configurez les variables d'environnement suivantes dans le fichier `.env` :
+
+```plaintext
+DB_PORT=PORT_BackEnd
+DB_CONNECTION_STRING=URL_de_connexion_à_MongoDB
+JWT_SECRET=Clé_secrète_pour_tokens_JWT
+```
+* DB_PORT : Remplacez ```PORT_BackEnd``` par le port local sur lequel votre backend sera connecté (par défaut : 4000).
+* DB_CONNECTION_STRING : Remplacez ```URL_de_connexion_à_MongoDB``` par l'URL de connexion à votre base de données MongoDB, sous le format :
+```mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<mydatabase>?retryWrites=true&w=majority.```
+* JWT_SECRET : Remplacez ```Clé_secrète_tokens_JWT``` par une clé secrète de votre choix pour les tokens JWT.
+
+Remplacez les valeurs génériques de l'URL :
+
+- `<username>` par votre nom d'utilisateur MongoDB.
+- `<password>` par votre mot de passe MongoDB.
+- `<cluster>` par le nom de votre cluster MongoDB.
+- `<mydatabase>` par le nom de la base de données que vous avez créée.
 
 ### Lancer le serveur backend
 Démarrez le serveur en utilisant nodemon :
@@ -57,7 +86,7 @@ Ou, si vous n'avez pas nodemon, utilisez la commande suivante :
 
 ```node server ```
 
-## 3. Installer le package des dépendances Front End:
+## 4. Installer le package des dépendances Front End:
 Accédez au répertoire du frontend et installez les dépendances :
 
 ```cd FrontEnd```
@@ -69,10 +98,3 @@ Démarrez l'application frontend :
 
 ```npm start```
 
-## Utilisation de MongoDB
-MongoDB est utilisé dans ce projet pour stocker et gérer les données, telles que les informations sur les livres, les utilisateurs, et les avis. La connexion à la base de données est réalisée grâce à Mongoose, un outil permettant de manipuler facilement les données MongoDB à travers un schéma bien défini.
-
-Connexion à MongoDB
-La connexion à MongoDB se fait via une URL définie dans le fichier .env.
-
-Si vous n'avez pas encore de compte MongoDB, vous pouvez en créer un en suivant [ce lien](https://account.mongodb.com/account/login?_ga=2.256941059.947447953.1723121308-1757398436.1720363383)
