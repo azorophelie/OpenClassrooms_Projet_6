@@ -1,12 +1,30 @@
 # Mon Vieux Grimoire - Backend
 
-Bienvenue dans le projet Mon Vieux Grimoire ! Ce dépôt contient le code source du backend de l'application de référencement et de notation de livres. Ce README vous guidera à travers l'installation des dépendances nécessaires, la configuration de votre environnement de développement, et les étapes pour lancer l'application.
+**Projet 6 de ma formation Développeur Web chez OpenClassrooms 2024**
+
+Ce dépôt contient le code source du backend de l'application de référencement et de notation de livres. 
+
+Ce README vous guidera pour : 
+- Installer les dépendances
+- Configurer l'environnement
+- Lancer le serveur backend
+- Comprendre le contexte du projet
+
+---
+
+## Fonctionnalités principales
+
+- Gestion des utilisateurs (inscription, connexion, authentification JWT)
+- Gestion des livres et des notes
+- Upload et optimisation d’images via Multer et Sharp
+- API REST sécurisée pour communiquer avec le frontend
+- Structure MVC pour un code maintenable et évolutif
 
 ## Prérequis
 Avant de commencer, assurez-vous d'avoir installé les éléments suivants sur votre machine :
 
 
-- **NODE.JS** (version 14.x ou plus récente)
+- **NODE.JS** 
 - **NPM** ou **YARN** (NPM est installé par défaut avec Node.js)
 - **MONGODB** (version 4.x ou plus récente)
 - Un IDE ou éditeur de texte tel que **VS Code**
@@ -25,30 +43,26 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants sur v
 ![dotenv](https://img.shields.io/badge/DOTENV-blue)
 
 
+#### Cloner le dépôt : 
+```sh
+git clone git@github.com:azorophelie/Mon-Vieux-Grimoire.git
 
+cd Mon-Vieux-Grimoire
+```
 
-
-
-
-
-## 1. Installation
-
-Suivez les étapes ci dessous pour installer et configurer le projet:
-
-#### Clonez le dépôt : 
-git clone ```https://github.com/azorophelie/OpenClassrooms_Projet_6.git```
-
-#### Naviguez vers le répertoire du projet cloné :
-```cd OpenClassrooms_Projet_6```
-
-## 2. Installer le package des dépendances Back End:
+#### 2. Installer le package des dépendances Back End:
 Accédez au répertoire du backend et installez les dépendances :
 
-```cd BackEnd```
+```sh
+cd BackEnd
+```
 
-```npm install```
-## 3. Configuration de la Base de Données
-MongoDB est utilisé dans ce projet pour stocker et gérer les données, telles que les informations sur les livres, les utilisateurs, et les avis. La connexion à la base de données est réalisée grâce à Mongoose, un outil permettant de manipuler facilement les données MongoDB à travers un schéma bien défini.
+```sh
+npm install
+```
+#### ***3. Configuration de la Base de Données***
+MongoDB est utilisé dans ce projet pour stocker et gérer les données, telles que les informations sur les livres, les utilisateurs, et les avis.   
+La connexion à la base de données est réalisée grâce à Mongoose, un outil permettant de manipuler facilement les données MongoDB à travers un schéma bien défini.
 #### Avant de lancer ce projet, assurez vous d'avoir bien configuré votre base de données sur MongoDB en suivant les étapes ci-dessous: 
  Si vous n'avez pas encore de compte MongoDB, inscrivez-vous sur [MongoDB](https://account.mongodb.com/account/register).
 
@@ -77,24 +91,46 @@ Remplacez les valeurs génériques de l'URL :
 - `<cluster>` par le nom de votre cluster MongoDB.
 - `<mydatabase>` par le nom de la base de données que vous avez créée.
 
-### Lancer le serveur backend
+#### Lancer le serveur backend
 Démarrez le serveur en utilisant nodemon :
 
-```nodemon server```
+```sh
+nodemon server
+```
 
 Ou, si vous n'avez pas nodemon, utilisez la commande suivante :
 
-```node server ```
+```sh
+node server
+ ```
 
-## 4. Installer le package des dépendances Front End:
+#### 4. Installer le package des dépendances Front End:
 Accédez au répertoire du frontend et installez les dépendances :
 
-```cd FrontEnd```
+```sh
+cd FrontEnd
+```
 
-```npm install```
+```sh
+npm install
+```
 
-### Lancer l'application frontend
+#### Lancer l'application frontend
 Démarrez l'application frontend :
 
-```npm start```
+```sh
+npm start
+```
+---
 
+## Contexte du projet
+- Client : Chaîne de librairies "Le Vieux Grimoire", Lille
+- Mission : Développer le backend en Node.js/Express pour gérer les livres, les utilisateurs et les notes.
+- Collaboration : Kévin (développeur frontend), Designer pour la maquette
+- Contraintes : Optimisation des images pour réduire la taille et améliorer les performances
+
+##### Ressources fournies
+- 🎨 [Maquette Figma ](https://www.figma.com/design/Snidyc45xi6qchoOPabMA9/Maquette-Mon-Vieux-Grimoir?node-id=0-1&p=f&t=Fvazw9OZcDC41vf1-0)
+- 📝 [Spécifications de l'API](https://course.oc-static.com/projects/D%C3%A9veloppeur+Web/DW_P7+Back-end/DW+P7+Back-end+-+Specifications+API.pdf)
+- 📄 [Spécifications fonctionnelles](https://course.oc-static.com/projects/D%C3%A9veloppeur+Web/DW_P7+Back-end/DW+P7+Back-end+-+Specifications+fonctionnelles.pdf)
+- 💻 [Code Front-End](https://github.com/OpenClassrooms-Student-Center/P7-Dev-Web-livres)
